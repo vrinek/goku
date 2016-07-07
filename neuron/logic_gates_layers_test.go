@@ -3,8 +3,6 @@ package neuron
 import (
 	"math"
 	"testing"
-
-	"github.com/vrinek/goku/neuron"
 )
 
 func TestAndLayerNetwork(t *testing.T) {
@@ -24,7 +22,7 @@ func TestAndLayerNetwork(t *testing.T) {
 	c2 := make(chan float64)
 	cout := make(chan float64)
 
-	l, err := neuron.NewLayer([]<-chan float64{c0, c1, c2}, []chan<- float64{cout})
+	l, err := NewLayer([]<-chan float64{c0, c1, c2}, []chan<- float64{cout})
 	if err != nil {
 		t.Fatal("Expected no error")
 	}
@@ -67,7 +65,7 @@ func TestOrLayerNetwork(t *testing.T) {
 	c2 := make(chan float64)
 	cout := make(chan float64)
 
-	l, err := neuron.NewLayer([]<-chan float64{c0, c1, c2}, []chan<- float64{cout})
+	l, err := NewLayer([]<-chan float64{c0, c1, c2}, []chan<- float64{cout})
 	if err != nil {
 		t.Fatal("Expected no error")
 	}
@@ -106,7 +104,7 @@ func TestNotLayerNetwork(t *testing.T) {
 	c1 := make(chan float64)
 	cout := make(chan float64)
 
-	l, err := neuron.NewLayer([]<-chan float64{c0, c1}, []chan<- float64{cout})
+	l, err := NewLayer([]<-chan float64{c0, c1}, []chan<- float64{cout})
 	if err != nil {
 		t.Fatal("Expected no error")
 	}
@@ -147,7 +145,7 @@ func TestNotAndNotLayerNetwork(t *testing.T) {
 	c2 := make(chan float64)
 	cout := make(chan float64)
 
-	l, err := neuron.NewLayer([]<-chan float64{c0, c1, c2}, []chan<- float64{cout})
+	l, err := NewLayer([]<-chan float64{c0, c1, c2}, []chan<- float64{cout})
 	if err != nil {
 		t.Fatal("Expected no error")
 	}
@@ -197,7 +195,7 @@ func TestXnorLayersNetwork(t *testing.T) {
 	out := make(chan float64)
 
 	// Layer 1
-	l1, err := neuron.NewLayer(
+	l1, err := NewLayer(
 		[]<-chan float64{in0l1, in1l1, in2l1},
 		[]chan<- float64{in1l2, in2l2},
 	)
@@ -216,7 +214,7 @@ func TestXnorLayersNetwork(t *testing.T) {
 	l1.SetWeight(2, 1, -20)
 
 	// Layer 2
-	l2, err := neuron.NewLayer(
+	l2, err := NewLayer(
 		[]<-chan float64{in0l2, in1l2, in2l2},
 		[]chan<- float64{out},
 	)
@@ -229,7 +227,7 @@ func TestXnorLayersNetwork(t *testing.T) {
 	l2.SetWeight(1, 0, 20)
 	l2.SetWeight(2, 0, 20)
 
-	elements := []neuron.Firer{l1, l2}
+	elements := []Firer{l1, l2}
 
 	for _, expectation := range expectations {
 		for _, element := range elements {

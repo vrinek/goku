@@ -3,15 +3,13 @@ package neuron
 import (
 	"math"
 	"testing"
-
-	"github.com/vrinek/goku/neuron"
 )
 
 func TestSoloNeuron(t *testing.T) {
 	threshold := 0.01
 	cin := make(chan float64)
 	cout := make(chan float64)
-	n := neuron.Neuron{Input: cin, Output: cout}
+	n := Neuron{Input: cin, Output: cout}
 
 	var table = []struct {
 		in          float64

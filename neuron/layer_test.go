@@ -3,14 +3,12 @@ package neuron
 import (
 	"math"
 	"testing"
-
-	"github.com/vrinek/goku/neuron"
 )
 
 func TestNoErrorNewLayer(t *testing.T) {
 	inputs := []<-chan float64{make(chan float64)}
 	outputs := []chan<- float64{make(chan float64)}
-	_, err := neuron.NewLayer(inputs, outputs)
+	_, err := NewLayer(inputs, outputs)
 
 	if err != nil {
 		t.Fatal("Expected no error")
@@ -20,7 +18,7 @@ func TestNoErrorNewLayer(t *testing.T) {
 func TestInputsErrorNewLayer(t *testing.T) {
 	inputs := []<-chan float64{}
 	outputs := []chan<- float64{make(chan float64)}
-	_, err := neuron.NewLayer(inputs, outputs)
+	_, err := NewLayer(inputs, outputs)
 
 	if err == nil {
 		t.Fatal("Expected an error when no inputs given")
@@ -30,7 +28,7 @@ func TestInputsErrorNewLayer(t *testing.T) {
 func TestOutputsErrorNewLayer(t *testing.T) {
 	inputs := []<-chan float64{make(chan float64)}
 	outputs := []chan<- float64{}
-	_, err := neuron.NewLayer(inputs, outputs)
+	_, err := NewLayer(inputs, outputs)
 
 	if err == nil {
 		t.Fatal("Expected an error when no outputs given")
@@ -40,7 +38,7 @@ func TestOutputsErrorNewLayer(t *testing.T) {
 func TestNewLayerZeroWeight(t *testing.T) {
 	cin := make(chan float64)
 	cout := make(chan float64)
-	l, err := neuron.NewLayer([]<-chan float64{cin}, []chan<- float64{cout})
+	l, err := NewLayer([]<-chan float64{cin}, []chan<- float64{cout})
 	if err != nil {
 		t.Fatal("No error expected, got:", err)
 	}
@@ -58,7 +56,7 @@ func TestNewLayerZeroWeight(t *testing.T) {
 func TestNewLayerNegativeWeight(t *testing.T) {
 	cin := make(chan float64)
 	cout := make(chan float64)
-	l, err := neuron.NewLayer([]<-chan float64{cin}, []chan<- float64{cout})
+	l, err := NewLayer([]<-chan float64{cin}, []chan<- float64{cout})
 	if err != nil {
 		t.Fatal("No error expected, got:", err)
 	}
@@ -78,7 +76,7 @@ func TestNewLayerNegativeWeight(t *testing.T) {
 func TestNewLayerPositiveWeight(t *testing.T) {
 	cin := make(chan float64)
 	cout := make(chan float64)
-	l, err := neuron.NewLayer([]<-chan float64{cin}, []chan<- float64{cout})
+	l, err := NewLayer([]<-chan float64{cin}, []chan<- float64{cout})
 	if err != nil {
 		t.Fatal("No error expected, got:", err)
 	}
