@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/vrinek/goku.svg?branch=master)](https://travis-ci.org/vrinek/goku)
+
 # Goku
 
 (name was chosen for no reason other than "starts with Go-")
