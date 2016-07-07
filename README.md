@@ -8,7 +8,8 @@ The "logic gate tests" were pulled straight from Stanford's Machine Learning cou
 
 ## TODO
 
-- [ ] Simplify creating a network
-    - [ ] `neuron.Layer` for simple layer-based NN setup
+- [x] Simplify creating a network
+    - [x] `neuron.Layer` for simple layer-based NN setup
 - [ ] Maybe introduce a Bias node
 - [ ] Rename some packages/types
+- [ ] Training!
