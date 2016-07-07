@@ -7,10 +7,6 @@ import (
 	"github.com/vrinek/goku/neuron"
 )
 
-type Firer interface {
-	Fire()
-}
-
 func TestAndNetwork(t *testing.T) {
 	c0 := make(chan float64) // bias
 	c1 := make(chan float64)
@@ -32,7 +28,7 @@ func TestAndNetwork(t *testing.T) {
 
 	n1 := neuron.Neuron{Input: r1n1, Output: cout}
 
-	elements := []Firer{p0, p1, p2, r1, n1}
+	elements := []neuron.Firer{p0, p1, p2, r1, n1}
 
 	var expectations = []struct {
 		a        float64
@@ -84,7 +80,7 @@ func TestOrNetwork(t *testing.T) {
 
 	n1 := neuron.Neuron{Input: r1n1, Output: cout}
 
-	elements := []Firer{p0, p1, p2, r1, n1}
+	elements := []neuron.Firer{p0, p1, p2, r1, n1}
 
 	var expectations = []struct {
 		a        float64
@@ -133,7 +129,7 @@ func TestNotNetwork(t *testing.T) {
 
 	n1 := neuron.Neuron{Input: r1n1, Output: cout}
 
-	elements := []Firer{p0, p1, r1, n1}
+	elements := []neuron.Firer{p0, p1, r1, n1}
 
 	var expectations = []struct {
 		a        float64
@@ -181,7 +177,7 @@ func TestNotAndNotNetwork(t *testing.T) {
 
 	n1 := neuron.Neuron{Input: r1n1, Output: cout}
 
-	elements := []Firer{p0, p1, p2, r1, n1}
+	elements := []neuron.Firer{p0, p1, p2, r1, n1}
 
 	var expectations = []struct {
 		a        float64
@@ -303,7 +299,7 @@ func TestXnorNetwork(t *testing.T) {
 
 	n3 := neuron.Neuron{Input: r5n3, Output: cout}
 
-	elements := []Firer{
+	elements := []neuron.Firer{
 		p0, p1, p2, p3, p4, p5, p6, p7, p8,
 		r0, r1, r2, r3, r4, r5,
 		n1, n2, n3,
