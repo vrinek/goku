@@ -1,15 +1,12 @@
-package neuron
+package sigmoid
 
 import (
 	"math"
 	"testing"
 )
 
-func TestSoloNeuron(t *testing.T) {
-	threshold := 0.01
-	cin := make(chan float64)
-	cout := make(chan float64)
-	n := Neuron{Input: cin, Output: cout}
+func TestSigmoid(t *testing.T) {
+	threshold := 0.001
 
 	var table = []struct {
 		in          float64
@@ -26,9 +23,7 @@ func TestSoloNeuron(t *testing.T) {
 	}
 
 	for _, row := range table {
-		go n.Fire()
-		cin <- float64(row.in)
-		actual := <-cout
+		actual := Sigmoid(row.in)
 
 		diff := math.Abs(actual - row.expectedOut)
 		if diff > threshold {
